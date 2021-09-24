@@ -31,7 +31,7 @@ void RunGame()
 	bool xTurn = true;
 	while (winner == "")
 	{
-		if (xTurn == true) {
+		if (xTurn) {
 			GetUserInput(true, gameboard);
 			xTurn = false;
 		}
@@ -134,7 +134,7 @@ void GetUserInput(bool xTurn, string gameboard[ROWS][COLS])
 
 bool CellAlreadyOcupied(int row, int col, string gameboard[ROWS][COLS])
 {
-	if (gameboard[row][col] == "X" || gameboard[row][col] == "O") {
+	if (gameboard[row][col] != " ") {
 		return false;
 	}
 
@@ -206,13 +206,17 @@ bool IsBoardFull(string gameboard[ROWS][COLS])
 {
 	//IDK HOW TO DO THIS FUNCTION zz
 
+	int countFill = 0;
+
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			if (gameboard[i][j] == "X" || gameboard[i][j] == "O") {
-				return true;
+				countFill++;
 			}
 		}
 	}
 
-	return false;
+
+
+	return countFill == 9;
 }
